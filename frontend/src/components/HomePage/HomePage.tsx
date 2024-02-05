@@ -1,3 +1,4 @@
+import RippleButton from '../RippleButton/RippleButton'
 import styles from './HomePage.module.scss'
 
 const HomePage = () => {
@@ -6,6 +7,7 @@ const HomePage = () => {
             <div className={styles.banner}>
                 <h1>AI-Driven Conversations <br /> Unleashed</h1>
             </div>
+            <RippleButton>Get Started</RippleButton>
         </section>
     )
 }
