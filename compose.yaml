@@ -1,0 +1,10 @@
+version: '1'
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/code
+      - /code/node_modules
