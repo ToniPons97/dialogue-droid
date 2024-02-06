@@ -8,7 +8,7 @@ const Header = () => {
     <nav className={styles.header}>
         <ul>
             <li>
-                <Logo />
+                <Logo width={150} height={150} />
             </li>
             <li>
                 <AnimatedLink href='#'>Solutions</AnimatedLink>
