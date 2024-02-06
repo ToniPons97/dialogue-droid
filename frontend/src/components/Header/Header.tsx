@@ -1,4 +1,5 @@
-import Link from '../Link/Link';
+import AnimatedLink from '../AnimatedLink/AnimatedLink';
+import Link from '../AnimatedLink/AnimatedLink';
 import Logo from '../Logo/Logo';
 import styles from './Header.module.scss';
 
@@ -10,10 +11,10 @@ const Header = () => {
                 <Logo />
             </li>
             <li>
-                <Link href='#'>Solutions</Link>
+                <AnimatedLink href='#'>Solutions</AnimatedLink>
             </li>
             <li>
-                <Link href='#'>Projects</Link>
+                <AnimatedLink href='#'>Projects</AnimatedLink>
             </li>
         </ul>
     </nav>
