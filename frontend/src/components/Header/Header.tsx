@@ -1,5 +1,4 @@
 import AnimatedLink from '../AnimatedLink/AnimatedLink';
-import Link from '../AnimatedLink/AnimatedLink';
 import Logo from '../Logo/Logo';
 import styles from './Header.module.scss';
 
@@ -11,14 +10,17 @@ const Header = () => {
                 <Logo width={150} height={150} />
             </li>
             <li>
-                <AnimatedLink href='#'>Solutions</AnimatedLink>
+                <AnimatedLink href='/'>Home</AnimatedLink>
             </li>
             <li>
-                <AnimatedLink href='#'>Projects</AnimatedLink>
+                <AnimatedLink href='/'>Company</AnimatedLink>
+            </li>
+            <li>
+                sign up (button)
             </li>
         </ul>
     </nav>
-  )
+  );
 }
 
-export default Header
+export default Header;

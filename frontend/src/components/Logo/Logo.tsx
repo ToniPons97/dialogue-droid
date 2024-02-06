@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import styles from './Logo.module.scss';
 
 type LogoProps = {
   width: number 
@@ -8,7 +7,7 @@ type LogoProps = {
 
 const Logo = ({width, height}: LogoProps) => {
   return (
-    <div className={styles.logo}>
+    <div style={{flex: 1}}>
       <Image
         width={width}
         height={height}
@@ -17,7 +16,7 @@ const Logo = ({width, height}: LogoProps) => {
         priority
       />
     </div>
-  )
+  );
 }
 
-export default Logo
+export default Logo;
