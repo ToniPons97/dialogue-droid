@@ -62,7 +62,7 @@
 
 @media screen and (max-width: 764px) {
     .home {
-        height: 72vh;
+        height: 92vh;
     }
 
     .banner {
@@ -93,8 +93,9 @@
 
 @media screen and (max-width: 570px) {
     .banner {
-        line-height: 2rem;
+        width: 65%;
     }
+
     .lineBreak1 {
         display: block;
     }

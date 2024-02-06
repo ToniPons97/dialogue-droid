@@ -8,7 +8,6 @@ type RippleButtonProps = {
     children: string
     onClick: MouseEventHandler
     alignSelf?: string
-
 }
 
 const RippleButton = ({ children, onClick, alignSelf = 'center' }: RippleButtonProps) => {
@@ -20,7 +19,7 @@ const RippleButton = ({ children, onClick, alignSelf = 'center' }: RippleButtonP
         <div 
             style={{ alignSelf: alignSelf }} 
             onClick={onClick} 
-            className='button-container' 
+            className='button-container'
             ref={btnRef}
         >
             <button>
