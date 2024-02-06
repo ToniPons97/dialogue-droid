@@ -1,0 +1,27 @@
+.link {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: #fff;
+        transform: scaleX(0);
+        transform-origin: bottom left;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover::before {
+        transform: scaleX(1);
+        /* Expand the width to 100% on hover */
+        transform-origin: bottom right;
+    }
+
+
+}

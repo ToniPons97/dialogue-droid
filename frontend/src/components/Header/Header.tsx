@@ -1,3 +1,4 @@
+import Link from '../Link/Link';
 import Logo from '../Logo/Logo';
 import styles from './Header.module.scss';
 
@@ -7,6 +8,12 @@ const Header = () => {
         <ul>
             <li>
                 <Logo />
+            </li>
+            <li>
+                <Link href='#'>Solutions</Link>
+            </li>
+            <li>
+                <Link href='#'>Projects</Link>
             </li>
         </ul>
     </nav>

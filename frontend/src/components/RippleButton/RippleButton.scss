@@ -1,6 +1,9 @@
+@use '../../variables.scss' as v;
+
 .button-container {
+    z-index: 2;
     background-color: rgba(255, 255, 255, 0);
-    border-radius: 15px;
+    border-radius: 32px;
     left: -15px;
     align-self: center;
     display: inline-flex;
@@ -14,7 +17,7 @@
         appearance: none;
         border: none;
         border-radius: 32px;
-        background-color: #405059;
+        background-color: v.$color-button;
         color: white;
         text-transform: uppercase;
         font-weight: bold;
