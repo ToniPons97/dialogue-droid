@@ -19,9 +19,6 @@
 
     &:hover::before {
         transform: scaleX(1);
-        /* Expand the width to 100% on hover */
         transform-origin: bottom right;
     }
-
-
 }

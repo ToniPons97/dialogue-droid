@@ -3,3 +3,22 @@
 
 # Environment
 .env
+
+# Next.js build directory
+.next/
+
+# Output of npm
+npm-debug.log
+yarn-error.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor-specific files
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*

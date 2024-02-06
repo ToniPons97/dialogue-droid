@@ -1,3 +1,5 @@
+'use client'
+
 import './RippleButton.scss';
 
 import { useRef } from 'react';

@@ -32,7 +32,7 @@ const openaiApiUrl = 'https://api.openai.com/v1/chat/completions';
 
 
 app.get('/', async (req: Request, res: Response) => {
-    res.status(200).json({ message: 'Working fine...' });
+    res.status(200).json({ message: 'Working fine!' });
 });
 
 app.post(`${basePath}/chat`, async (req: Request, res: Response) => {
