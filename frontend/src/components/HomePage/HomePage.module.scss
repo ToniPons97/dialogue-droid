@@ -32,7 +32,7 @@
         overflow: hidden;
         border-right: 8px solid hsl(0, 2%, 43%);
         white-space: nowrap;
-        text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.1);
+        text-shadow: 4px 4px 8px rgba(255, 255, 255, 0.1);
         animation: typewriter 4s steps(44) 1s 1 normal both, blinkTextCursor 700ms infinite;
     }
 
@@ -92,6 +92,9 @@
 }
 
 @media screen and (max-width: 570px) {
+    .banner {
+        line-height: 2rem;
+    }
     .lineBreak1 {
         display: block;
     }

@@ -1,24 +1,25 @@
 'use client'
 
-import './RippleButton.scss';
+import './RippleButton.scss'
+import { MouseEventHandler, useRef } from 'react'
+import { useClickRippleAnim } from '../../hooks/useClickRippleAnim'
 
-import { useRef } from 'react';
-import { useClickRippleAnim } from '../../hooks/useClickRippleAnim';
+type RippleButtonProps = {
+    children: string
+    onClick: MouseEventHandler
+    alignSelf?: string
 
-const RippleButton = ({ children, click, alignSelf = 'center' }: any) => {
+}
+
+const RippleButton = ({ children, onClick, alignSelf = 'center' }: RippleButtonProps) => {
     const btnRef = useRef(null);
 
     useClickRippleAnim(btnRef, {});
 
-    const handleClick = () => {
-        click();
-    }
-
-
     return (
         <div 
             style={{ alignSelf: alignSelf }} 
-            onClick={handleClick} 
+            onClick={onClick} 
             className='button-container' 
             ref={btnRef}
         >
@@ -26,7 +27,7 @@ const RippleButton = ({ children, click, alignSelf = 'center' }: any) => {
                 {children}
             </button>
         </div>
-    );
-};
+    )
+}
 
-export default RippleButton;
+export default RippleButton

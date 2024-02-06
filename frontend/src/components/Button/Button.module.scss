@@ -1,0 +1,16 @@
+.button {
+    appearance: none;
+    border: none;
+    background: none;
+
+    color: white;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 14px;
+    width: 100px;
+    height: 45px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

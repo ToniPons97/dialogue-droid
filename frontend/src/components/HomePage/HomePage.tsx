@@ -1,8 +1,13 @@
-import RippleButton from '../RippleButton/RippleButton';
-import styles from './HomePage.module.scss';
-import Blob from '../Blob/Blob';
+'use client'
+
+import RippleButton from '../RippleButton/RippleButton'
+import styles from './HomePage.module.scss'
+import Blob from '../Blob/Blob'
+import { useRouter } from 'next/navigation'
 
 const HomePage = () => {
+    const router = useRouter()
+
     return (
         <section className={styles.home}>
             <Blob />
@@ -14,9 +19,9 @@ const HomePage = () => {
                     Unleashed
                 </h1>
             </div>
-            <RippleButton>Get Started</RippleButton>
+            <RippleButton onClick={() => router.push('/chat')}>Get Started</RippleButton>
         </section>
-    );
+    )
 }
 
-export default HomePage;
+export default HomePage

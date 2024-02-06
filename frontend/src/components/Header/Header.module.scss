@@ -3,13 +3,13 @@
 .header {
     height: 150px;
     background-color: v.$color-primary;
-    
+
     ul {
         list-style: none;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        
+
         gap: 1.5rem;
         margin: 0;
         padding-right: 25px;
@@ -21,3 +21,22 @@
     }
 }
 
+.desktopMenu {
+    display: inline;
+
+}
+
+.mobileMenu {
+    display: none;
+}
+
+@media screen and (max-width: 670px) {
+    .desktopMenu {
+        display: none;
+    }
+
+    .mobileMenu {
+        display: block;
+    }
+
+}

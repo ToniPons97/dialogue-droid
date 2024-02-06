@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
 type LogoProps = {
   width: number 
@@ -7,7 +7,7 @@ type LogoProps = {
 
 const Logo = ({width, height}: LogoProps) => {
   return (
-    <div style={{flex: 1}}>
+    <div style={{flex: 0.9}}>
       <Image
         width={width}
         height={height}
@@ -16,7 +16,7 @@ const Logo = ({width, height}: LogoProps) => {
         priority
       />
     </div>
-  );
+  )
 }
 
-export default Logo;
+export default Logo

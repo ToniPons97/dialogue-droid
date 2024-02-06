@@ -1,5 +1,5 @@
-import styles from './AnimatedLink.module.scss';
-import Link from 'next/link';
+import styles from './AnimatedLink.module.scss'
+import Link from 'next/link'
 
 type LinkProps = {
     href: string,
