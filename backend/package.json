@@ -6,6 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.ts",
+    "db:clean": "docker compose stop mongodb && docker compose rm mongodb -f --volumes",
+    "db:generate": "npx prisma generate",
+    "db:migrate": "DATABASE_HOST=localhost npx prisma db push",
+    "db:seed": "npx prisma db seed",
+    "db:up": "docker compose up mongodb -d --remove-orphans",
+    "db:reset": "npm run db:clean && npm run db:up && npm run db:migrate && npm run db:generate && npm run db:seed",
     "build": "tsc"
   },
   "keywords": [],
@@ -23,6 +29,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.17"
+    "@types/cors": "^2.8.17",
+    "prisma": "^5.9.1"
   }
 }

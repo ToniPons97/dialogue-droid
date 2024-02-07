@@ -1,20 +1,32 @@
-version: '1'
+version: '3.8'
 services:
-  backend:
-    build:
-      context: ./backend
-    container_name: backend
+  mongodb:
+    image: mongo:jammy
+    container_name: mongodb
     ports:
-      - "5000:5000"
+      - "27017:27017"
     volumes:
-      - ./backend:/code
-      - ./backend/node_modules:/code/node_modules
-  frontend:
-    build:
-      context: ./frontend
-    container_name: frontend
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend:/code
-      - ./frontend/node_modules:/code/node_modules
+      - ./mongodb/init_scripts:/docker-entrypoint-initdb.d
+      # - ./mongodb/database:/data/db
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+  # backend:
+  #   build:
+  #     context: ./backend
+  #   container_name: backend
+  #   ports:
+  #     - "5000:5000"
+  #   volumes:
+  #     - ./backend:/code
+  #     - ./backend/node_modules:/code/node_modules
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   container_name: frontend
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./frontend:/code
+  #     - ./frontend/node_modules:/code/node_modules
