@@ -10,12 +10,6 @@ if (!openaiApiKey) {
     console.warn('Warning: OPENAI_API_KEY is not defined.');
 }
 
-const systemMessage = {
-    role: "system",
-    content:
-        "You are a helpful assistant. You are supposed to answer the questions asked by the users. Give funky responses.",
-};
-
 const app = express();
 
 app.use(express.json());
@@ -55,6 +49,8 @@ app.post(`${basePath}/chat`, async (req: Request, res: Response) => {
         res.status(500).json({ message: 'server error' });
     }
 });
+
+
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}...`);

@@ -1,32 +1,37 @@
 version: '3.8'
 services:
   mongodb:
-    image: mongo:jammy
+    image: bitnami/mongodb
     container_name: mongodb
     ports:
       - "27017:27017"
     volumes:
       - ./mongodb/init_scripts:/docker-entrypoint-initdb.d
-      # - ./mongodb/database:/data/db
-    restart: unless-stopped
+      - ./mongodb/database:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password
-  # backend:
-  #   build:
-  #     context: ./backend
-  #   container_name: backend
-  #   ports:
-  #     - "5000:5000"
-  #   volumes:
-  #     - ./backend:/code
-  #     - ./backend/node_modules:/code/node_modules
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #   container_name: frontend
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./frontend:/code
-  #     - ./frontend/node_modules:/code/node_modules
+      - MONGODB_ADVERTISED_HOSTNAME=localhost
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+      - MONGODB_USERNAME=admin
+      - MONGODB_PASSWORD=password
+      - MONGODB_DATABASE=dialoguedroid
+      - MONGODB_ROOT_USER=mongodb_root_user
+      - MONGODB_ROOT_PASSWORD=mongodb_root_password
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/code
+      - ./backend/node_modules:/code/node_modules
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/code
+      - ./frontend/node_modules:/code/node_modules
