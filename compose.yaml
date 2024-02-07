@@ -1,22 +1,6 @@
 version: '3.8'
+
 services:
-  mongodb:
-    image: bitnami/mongodb
-    container_name: mongodb
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./mongodb/init_scripts:/docker-entrypoint-initdb.d
-      - ./mongodb/database:/data/db
-    environment:
-      - MONGODB_ADVERTISED_HOSTNAME=localhost
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_KEY=replicasetkey123
-      - MONGODB_USERNAME=admin
-      - MONGODB_PASSWORD=password
-      - MONGODB_DATABASE=dialoguedroid
-      - MONGODB_ROOT_USER=mongodb_root_user
-      - MONGODB_ROOT_PASSWORD=mongodb_root_password
   backend:
     build:
       context: ./backend

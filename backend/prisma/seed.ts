@@ -29,10 +29,6 @@ const populateDb = async () => {
     );
 };
 
-async function main() {
-
-}
-
 (async () => {
     await populateDb();
 })();
