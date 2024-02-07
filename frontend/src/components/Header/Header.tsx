@@ -17,7 +17,7 @@ const Header = () => {
                     <AnimatedLink href='/'>Home</AnimatedLink>
                 </li>
                 <li className={styles.desktopMenu}>
-                    <AnimatedLink href='/'>Company</AnimatedLink>
+                    <AnimatedLink href='/chat'>Chat</AnimatedLink>
                 </li>
                 <li className={styles.desktopMenu}>
                     <Button onClick={() => console.log('signing up')}>Sign Up</Button>

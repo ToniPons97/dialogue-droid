@@ -28,7 +28,7 @@ export default function HamburgerMenu({ className }: HamburgerMenuProps) {
                             Home
                         </MenuItem>
                         <MenuItem onClick={popupState.close}>
-                            Company
+                            Chat
                         </MenuItem>
                         <MenuItem onClick={popupState.close}>
                             Sign Up

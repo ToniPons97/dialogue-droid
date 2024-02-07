@@ -1,18 +1,12 @@
-'use client'
-import apiClient from "@/clients/api-client"
-import { useEffect } from "react"
+import ChatDisplay from "./ChatDisplay/ChatDisplay";
+import Blob from "@/components/Blob/Blob";
 
 const page = () => {
-
-    useEffect(() => {
-        apiClient.get('/')
-            .then(res => console.log(res.data))
-            .catch(err => console.error(err));
-    }, []);
-
-
     return (
-        <div>page</div>
+        <>
+            <Blob left='0' transform='rotate(90deg)' />
+            <ChatDisplay />
+        </>
     )
 }
 

@@ -1,0 +1,63 @@
+@use '../../../variables.scss' as v;
+
+.chatDisplay {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    // border: 1px solid red;
+    // height: 100vh;
+        background-image: linear-gradient(v.$color-primary, v.$color-secondary);
+}
+
+.messages {
+    // border: 1px solid green;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    padding: 15px 0px;
+    width: 78%;
+    height: 62vh;
+}
+
+.messageBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border: 1px solid white;
+    width: 80%;
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: white;
+}
+
+.inputArea {
+    width: 78%;
+    height: 16vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+
+    // border: 1px solid blue;
+
+    input {
+        width: 500px;
+        height: 40px;
+
+        appearance: none;
+        background: none;
+
+        border: 1px solid white;
+        border-radius: 20px;
+        padding-left: 10px;
+        color: white;
+        font-size: 19px;
+    }
+
+}
