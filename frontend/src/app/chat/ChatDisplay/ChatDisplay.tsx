@@ -23,7 +23,70 @@ const ChatDisplay = () => {
                     </div>
                 </div>
                 <div className={styles.messageBox}>
-                    <Image src='/logo.png' width={70} height={70} alt='droid icon' />
+                    <Image src='/droid.png' width={30} height={30} alt='droid icon' />
+                    <p>
+                        In historical chess matches, there were no direct encounters between Bobby Fischer and Anatoly Karpov. However, they both faced different opponents in multiple World Chess Championship matches. Fischer won the World Chess Championship in 1972, defeating Boris Spassky. Karpov won the title in 1975 and defended it successfully until 1984 when he lost against Garry Kasparov.
+                        Therefore, it is difficult to determine who would have won
+                        if Fischer and Karpov had played against each other directly.
+                    </p>
+                </div>
+                <div className={styles.messageBox}>
+                    <PersonIcon
+                        fontSize='medium'
+                        sx={{
+                            color: 'grey',
+                            backgroundColor: 'white',
+                            borderRadius: '50%',
+                        }}
+                    />
+                    <div>
+                        <p>who wins between Fischer and Karpov?</p>
+                    </div>
+                </div>
+                <div className={styles.messageBox}>
+                    <Image src='/droid.png' width={30} height={30} alt='droid icon' />
+                    <p>
+                        In historical chess matches, there were no direct encounters between Bobby Fischer and Anatoly Karpov. However, they both faced different opponents in multiple World Chess Championship matches. Fischer won the World Chess Championship in 1972, defeating Boris Spassky. Karpov won the title in 1975 and defended it successfully until 1984 when he lost against Garry Kasparov.
+                        Therefore, it is difficult to determine who would have won
+                        if Fischer and Karpov had played against each other directly.
+                    </p>
+                </div>
+                <div className={styles.messageBox}>
+                    <PersonIcon
+                        fontSize='medium'
+                        sx={{
+                            color: 'grey',
+                            backgroundColor: 'white',
+                            borderRadius: '50%',
+                        }}
+                    />
+                    <div>
+                        <p>who wins between Fischer and Karpov?</p>
+                    </div>
+                </div>
+                <div className={styles.messageBox}>
+                    <Image src='/droid.png' width={30} height={30} alt='droid icon' />
+                    <p>
+                        In historical chess matches, there were no direct encounters between Bobby Fischer and Anatoly Karpov. However, they both faced different opponents in multiple World Chess Championship matches. Fischer won the World Chess Championship in 1972, defeating Boris Spassky. Karpov won the title in 1975 and defended it successfully until 1984 when he lost against Garry Kasparov.
+                        Therefore, it is difficult to determine who would have won
+                        if Fischer and Karpov had played against each other directly.
+                    </p>
+                </div>
+                <div className={styles.messageBox}>
+                    <PersonIcon
+                        fontSize='medium'
+                        sx={{
+                            color: 'grey',
+                            backgroundColor: 'white',
+                            borderRadius: '50%',
+                        }}
+                    />
+                    <div>
+                        <p>who wins between Fischer and Karpov?</p>
+                    </div>
+                </div>
+                <div className={styles.messageBox}>
+                    <Image src='/droid.png' width={30} height={30} alt='droid icon' />
                     <p>
                         In historical chess matches, there were no direct encounters between Bobby Fischer and Anatoly Karpov. However, they both faced different opponents in multiple World Chess Championship matches. Fischer won the World Chess Championship in 1972, defeating Boris Spassky. Karpov won the title in 1975 and defended it successfully until 1984 when he lost against Garry Kasparov.
                         Therefore, it is difficult to determine who would have won

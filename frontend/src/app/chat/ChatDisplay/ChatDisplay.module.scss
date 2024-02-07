@@ -1,13 +1,15 @@
 @use '../../../variables.scss' as v;
 
 .chatDisplay {
+    // Not working
+    z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
     // border: 1px solid red;
     // height: 100vh;
-        background-image: linear-gradient(v.$color-primary, v.$color-secondary);
+    background-image: linear-gradient(v.$color-primary, v.$color-secondary);
 }
 
 .messages {
@@ -28,11 +30,15 @@
     flex-direction: column;
     justify-content: center;
     position: relative;
+    // Need to make border radius independent of height.
     border: 1px solid white;
     width: 80%;
     border-radius: 20px;
-    padding: 5px 10px;
+    padding: 9px 14px;
     color: white;
+    // box-shadow: rgba(255, 255, 255, 0.2) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 8px;
+
 }
 
 .inputArea {
