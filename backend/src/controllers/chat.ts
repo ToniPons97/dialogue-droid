@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { completionResponse } from '../utils/utils';
 
-
 const prisma = new PrismaClient();
 
 // Get all chats
@@ -11,12 +10,11 @@ const getAllChats = async (req: Request, res: Response) => {
         const data = await prisma.chat.findMany();
         res.status(200).json({
             status: 'success',
-            results: data.length,
-            chats: data
+            data
         });
     } catch (e) {
         console.error(e);
-        res.status(500).json({ message: '500: Internal server error.' });
+        res.status(500).json({ status: 'error', message: 'Internal server error.' });
     }
 }
 
@@ -34,14 +32,16 @@ const createChat = async (req: Request, res: Response) => {
                 }
             });
 
-
             res.status(200).json({
+                status: 'success',
                 ...messagePair
             });
+        } else {
+            res.status(400).json({ status: 'error', message: 'Invalid request.' });
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'server error' });
+        res.status(500).json({ status: 'error', message: 'Internal server error.' });
     }
 }
 

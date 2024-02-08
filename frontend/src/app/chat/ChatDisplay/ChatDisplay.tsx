@@ -5,19 +5,8 @@ import Button from '@/components/Button/Button';
 import apiClient from '@/clients/api-client';
 import { ChangeEvent, useEffect, useState, useRef } from 'react';
 import MessagePair from '../MessageBox/MessagePair';
+import { Chat, ChatsResponse } from '@/types/chatTypes';
 
-type Chat = {
-    id: string
-    createdAt: string
-    userPrompt: string
-    response: string
-}
-
-type ApiResponse = {
-    status: 'success' | 'processing' | 'failed'
-    results: number
-    chats: Chat[]
-}
 
 const ChatDisplay = () => {
     const [messages, setMessages] = useState<Chat[]>([]);
@@ -32,8 +21,8 @@ const ChatDisplay = () => {
 
     // Get chats
     useEffect(() => {
-        const getMessages = async () => await apiClient.get<ApiResponse>('/chat');
-        getMessages().then(res => setMessages(res.data.chats));
+        const getMessages = async () => await apiClient.get<ChatsResponse>('/chat');
+        getMessages().then(res => setMessages(res.data.data));
     }, []);
 
     useEffect(() => {
@@ -51,7 +40,7 @@ const ChatDisplay = () => {
     const sendPrompt = async (prompt: string) => {
         try {
             setUserInput('');
-            const response = await apiClient.post('/chat', { prompt });
+            const response = await apiClient.post<Chat>('/chat', { prompt });
             setMessages(prev => [...prev, response.data]);
         } catch (e) {
             console.error(e);
@@ -69,12 +58,12 @@ const ChatDisplay = () => {
         <section className={styles.chatDisplay}>
             <div ref={chatContainerRef} className={styles.messages}>
                 {
-                    messages.map(m => (
+                    messages.map((message) => (
                         <MessagePair
-                            key={m.id}
-                            userPrompt={m.userPrompt}
-                            response={m.response}
-                            date={m.createdAt}
+                            key={message.id}
+                            userPrompt={message.userPrompt}
+                            response={message.response}
+                            date={message.createdAt}
                         />
                     ))
                 }
