@@ -3,7 +3,6 @@ import PersonIcon from '@mui/icons-material/Person';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { IconButton } from '@mui/material';
 
 type MessagePairProps = {
   userPrompt: string
@@ -12,7 +11,8 @@ type MessagePairProps = {
 }
 
 const MessagePair = ({ userPrompt, response, date }: MessagePairProps) => {
-  const formatedDate = format(new Date(date), "MMM dd, yyyy 'at' HH:mm");
+  const formatedDate = format(new Date(date), "MMM dd, yyyy 'at' HH:mm")
+
   return (
     <>
       <p style={{ color: 'white' }}>{formatedDate}</p>
