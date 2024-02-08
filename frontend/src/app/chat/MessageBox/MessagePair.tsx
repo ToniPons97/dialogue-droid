@@ -2,6 +2,8 @@ import styles from './MessagePair.module.scss'
 import PersonIcon from '@mui/icons-material/Person';
 import { format } from 'date-fns';
 import Image from 'next/image';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { IconButton } from '@mui/material';
 
 type MessagePairProps = {
   userPrompt: string
@@ -13,7 +15,7 @@ const MessagePair = ({ userPrompt, response, date }: MessagePairProps) => {
   const formatedDate = format(new Date(date), "MMM dd, yyyy 'at' HH:mm");
   return (
     <>
-      <p style={{color: 'white'}}>{formatedDate}</p>
+      <p style={{ color: 'white' }}>{formatedDate}</p>
       <div className={styles.messageBox}>
         <PersonIcon
           fontSize='medium'
@@ -23,9 +25,8 @@ const MessagePair = ({ userPrompt, response, date }: MessagePairProps) => {
             borderRadius: '50%',
           }}
         />
-        <div>
-          <p>{userPrompt}</p>
-        </div>
+        <MoreHorizIcon />
+        <p>{userPrompt}</p>
       </div>
       <div className={styles.messageBox}>
         <Image src='/droid.png' width={30} height={30} alt='droid icon' />
