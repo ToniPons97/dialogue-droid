@@ -1,6 +1,7 @@
 import { Response } from "express";
 import OpenAI from "openai";
 import * as dotenv from 'dotenv';
+import { ChatCompletionMessage } from "openai/resources";
 
 dotenv.config();
 
@@ -15,31 +16,26 @@ const openai = new OpenAI({
     apiKey: openaiApiKey
 });
 
-const streamCompletionRes = async (prompt: string, res: Response): Promise<string | undefined> => {
+const completionResponse = async (prompt: string, res: Response): Promise<string | undefined> => {
     try {
-        const stream = await openai.chat.completions.create({
+        const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
             messages: [{ role: 'user', content: prompt }],
-            stream: true,
             n: 1
         });
+
+        const message = response.choices[0].message.content;
     
-        let response = '';
-        for await (const part of stream) {
-            const chunk = part.choices[0]?.delta.content || "";
-            response += chunk;
-            res.write(chunk);
-        }
-    
-        res.end();
-        return response;
+
+
+        return message || '';
     } catch (e) {
         console.error('Error streaming completion:', e);
         res.status(500).json({
-            status: 'Failed',
+            status: 'failed',
             message: 'An error occurred while processing the request'
         });
     }
 }
 
-export { streamCompletionRes };
+export { completionResponse };

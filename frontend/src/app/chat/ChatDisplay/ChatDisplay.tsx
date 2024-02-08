@@ -1,102 +1,97 @@
 'use client'
 
 import styles from './ChatDisplay.module.scss'
-import Image from 'next/image'
-import PersonIcon from '@mui/icons-material/Person';
 import Button from '@/components/Button/Button';
+import apiClient from '@/clients/api-client';
+import { ChangeEvent, useEffect, useState, useRef } from 'react';
+import MessagePair from '../MessageBox/MessagePair';
+
+type Chat = {
+    id: string
+    createdAt: string
+    userPrompt: string
+    response: string
+}
+
+type ApiResponse = {
+    status: 'success' | 'processing' | 'failed'
+    results: number
+    chats: Chat[]
+}
 
 const ChatDisplay = () => {
+    const [messages, setMessages] = useState<Chat[]>([]);
+    const chatContainerRef = useRef<HTMLDivElement>(null);
+
+    // Scroll to bottom when messages change
+    useEffect(() => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }, [messages]);
+
+    // Get chats
+    useEffect(() => {
+        const getMessages = async () => await apiClient.get<ApiResponse>('/chat');
+        getMessages().then(res => setMessages(res.data.chats));
+    }, []);
+
+    // useEffect(() => {
+    //     console.log(messages);
+    // }, [messages]);
+
+
+    // Handling user events and managing state
+    const [userInput, setUserInput] = useState('');
+
+    const handleInputChange = (ev: ChangeEvent<HTMLInputElement>) => {
+        setUserInput(ev.target.value);
+    }
+
+    const sendPrompt = async (prompt: string) => {
+        try {
+            setUserInput('');
+            const response = await apiClient.post('/chat', { prompt });
+            setMessages(prev => [...prev, response.data]);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    const handleClick = () => {
+        if (userInput) {
+            // console.log('send', userInput);
+            sendPrompt(userInput);
+        }
+    }
+
     return (
         <section className={styles.chatDisplay}>
-            <div className={styles.messages}>
-                <div className={styles.messageBox}>
-                    <PersonIcon
-                        fontSize='medium'
-                        sx={{
-                            color: 'grey',
-                            backgroundColor: 'white',
-                            borderRadius: '50%',
-                        }}
-                    />
-                    <div>
-                        <p>who wins between Fischer and Karpov?</p>
-                    </div>
-                </div>
-                <div className={styles.messageBox}>
-                    <Image src='/droid.png' width={30} height={30} alt='droid icon' />
-                    <p>
-                        In historical chess matches, there were no direct encounters between Bobby Fischer and Anatoly Karpov. However, they both faced different opponents in multiple World Chess Championship matches. Fischer won the World Chess Championship in 1972, defeating Boris Spassky. Karpov won the title in 1975 and defended it successfully until 1984 when he lost against Garry Kasparov.
-                        Therefore, it is difficult to determine who would have won
-                        if Fischer and Karpov had played against each other directly.
-                    </p>
-                </div>
-                <div className={styles.messageBox}>
-                    <PersonIcon
-                        fontSize='medium'
-                        sx={{
-                            color: 'grey',
-                            backgroundColor: 'white',
-                            borderRadius: '50%',
-                        }}
-                    />
-                    <div>
-                        <p>who wins between Fischer and Karpov?</p>
-                    </div>
-                </div>
-                <div className={styles.messageBox}>
-                    <Image src='/droid.png' width={30} height={30} alt='droid icon' />
-                    <p>
-                        In historical chess matches, there were no direct encounters between Bobby Fischer and Anatoly Karpov. However, they both faced different opponents in multiple World Chess Championship matches. Fischer won the World Chess Championship in 1972, defeating Boris Spassky. Karpov won the title in 1975 and defended it successfully until 1984 when he lost against Garry Kasparov.
-                        Therefore, it is difficult to determine who would have won
-                        if Fischer and Karpov had played against each other directly.
-                    </p>
-                </div>
-                <div className={styles.messageBox}>
-                    <PersonIcon
-                        fontSize='medium'
-                        sx={{
-                            color: 'grey',
-                            backgroundColor: 'white',
-                            borderRadius: '50%',
-                        }}
-                    />
-                    <div>
-                        <p>who wins between Fischer and Karpov?</p>
-                    </div>
-                </div>
-                <div className={styles.messageBox}>
-                    <Image src='/droid.png' width={30} height={30} alt='droid icon' />
-                    <p>
-                        In historical chess matches, there were no direct encounters between Bobby Fischer and Anatoly Karpov. However, they both faced different opponents in multiple World Chess Championship matches. Fischer won the World Chess Championship in 1972, defeating Boris Spassky. Karpov won the title in 1975 and defended it successfully until 1984 when he lost against Garry Kasparov.
-                        Therefore, it is difficult to determine who would have won
-                        if Fischer and Karpov had played against each other directly.
-                    </p>
-                </div>
-                <div className={styles.messageBox}>
-                    <PersonIcon
-                        fontSize='medium'
-                        sx={{
-                            color: 'grey',
-                            backgroundColor: 'white',
-                            borderRadius: '50%',
-                        }}
-                    />
-                    <div>
-                        <p>who wins between Fischer and Karpov?</p>
-                    </div>
-                </div>
-                <div className={styles.messageBox}>
-                    <Image src='/droid.png' width={30} height={30} alt='droid icon' />
-                    <p>
-                        In historical chess matches, there were no direct encounters between Bobby Fischer and Anatoly Karpov. However, they both faced different opponents in multiple World Chess Championship matches. Fischer won the World Chess Championship in 1972, defeating Boris Spassky. Karpov won the title in 1975 and defended it successfully until 1984 when he lost against Garry Kasparov.
-                        Therefore, it is difficult to determine who would have won
-                        if Fischer and Karpov had played against each other directly.
-                    </p>
-                </div>
+            <div ref={chatContainerRef} className={styles.messages}>
+                {
+                    messages.map(m => (
+                        <MessagePair
+                            key={m.id}
+                            userPrompt={m.userPrompt}
+                            response={m.response}
+                        />
+                    ))
+                }
+                {
+                    messages.length === 0 && <h2>No chats found</h2>
+                }
             </div>
             <div className={styles.inputArea}>
-                <input type='text' />
-                <Button width='150px' height='50px' fontSize='21px' onClick={() => console.log('click')}>Send</Button>
+                <input value={userInput} onChange={handleInputChange} type='text' />
+                <Button
+                    width='150px'
+                    height='50px'
+                    fontSize='21px'
+                    onClick={handleClick}
+                    disabled={!userInput}
+                >
+                    Send
+                </Button>
             </div>
         </section>
     )

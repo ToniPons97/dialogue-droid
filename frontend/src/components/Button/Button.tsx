@@ -7,14 +7,24 @@ type ButtonProps = {
   width?: string
   height?: string
   fontSize?: string
+  disabled: boolean
 }
 
-const Button = ({ children, onClick, width, height, fontSize }: ButtonProps) => {
+const Button = ({
+  children,
+  onClick,
+  width,
+  height,
+  fontSize,
+  disabled
+}: ButtonProps) => {
   return (
     <button
       style={{ width, height, fontSize }}
       className={styles.button}
-      onClick={onClick}>
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
     </button>
   )

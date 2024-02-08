@@ -25,21 +25,7 @@
     height: 62vh;
 }
 
-.messageBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    // Need to make border radius independent of height.
-    border: 1px solid white;
-    width: 80%;
-    border-radius: 20px;
-    padding: 9px 14px;
-    color: white;
-    // box-shadow: rgba(255, 255, 255, 0.2) 0px 3px 8px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 8px;
 
-}
 
 .inputArea {
     width: 78%;

@@ -13,4 +13,9 @@
     &:hover {
         cursor: pointer;
     }
+
+    &:disabled {
+        opacity: 0.3;
+        transition: opacity 0.3s;
+    }
 }
