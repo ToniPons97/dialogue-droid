@@ -1,22 +1,9 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import * as dotenv from 'dotenv';
-import OpenAI from 'openai';
+import { streamCompletionRes } from '../utils/streamingUtils';
 
-dotenv.config();
 
 const prisma = new PrismaClient();
-
-const openaiApiKey = process.env.OPENAI_API_KEY;
-
-if (!openaiApiKey) {
-    console.warn('Warning: OPENAI_API_KEY is not defined.');
-}
-
-const openai = new OpenAI({
-    apiKey: openaiApiKey
-});
-
 
 // Get all chats
 const getAllChats = async (req: Request, res: Response) => {
@@ -37,37 +24,20 @@ const getAllChats = async (req: Request, res: Response) => {
 const createChat = async (req: Request, res: Response) => {
     try {
         const prompt: string = req.body.prompt;
+        const response = await streamCompletionRes(prompt, res);
 
-        const stream = await openai.chat.completions.create({
-            model: 'gpt-3.5-turbo',
-            messages: [{ role: 'user', content: prompt }],
-            stream: true,
-            n: 1
-        });
-
-        let response = '';
-        for await (const part of stream) {
-            response += part.choices[0]?.delta.content || "";
+        if (response) {
+            await prisma.chat.create({
+                data: {
+                    userPrompt: prompt,
+                    response
+                }
+            });
         }
-
-        await prisma.chat.create({
-            data: {
-                userPrompt: prompt,
-                response
-            }
-        });
-
-        res.status(201).json({
-            status: 'success',
-            data: {
-                chat: response
-            }
-        });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'server error' });
     }
 }
-
 
 export { getAllChats, createChat };
