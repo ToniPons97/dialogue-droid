@@ -36,9 +36,9 @@ const ChatDisplay = () => {
         getMessages().then(res => setMessages(res.data.chats));
     }, []);
 
-    // useEffect(() => {
-    //     console.log(messages);
-    // }, [messages]);
+    useEffect(() => {
+        console.log(messages);
+    }, [messages]);
 
 
     // Handling user events and managing state
@@ -74,11 +74,12 @@ const ChatDisplay = () => {
                             key={m.id}
                             userPrompt={m.userPrompt}
                             response={m.response}
+                            date={m.createdAt}
                         />
                     ))
                 }
                 {
-                    messages.length === 0 && <h2>No chats found</h2>
+                    messages.length === 0 && <h2 className={styles.noChatsMessage}>No chats found</h2>
                 }
             </div>
             <div className={styles.inputArea}>
