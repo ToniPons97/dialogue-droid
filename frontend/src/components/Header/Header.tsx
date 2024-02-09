@@ -1,4 +1,3 @@
-'use client'
 import AnimatedLink from '../AnimatedLink/AnimatedLink'
 import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
@@ -19,7 +18,7 @@ const Header = () => {
                     <AnimatedLink href='/chat'>Chat</AnimatedLink>
                 </li>
                 <li className={styles.desktopMenu}>
-                    <Button disabled={false} onClick={() => console.log('signing up')}>Sign Up</Button>
+                    <Button disabled={false}>Sign Up</Button>
                 </li>
                 <li className={styles.mobileMenu}>
                     <HamburgerMenu className={styles.mobileMenu} />

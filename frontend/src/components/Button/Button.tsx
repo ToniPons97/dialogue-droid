@@ -3,7 +3,7 @@ import { MouseEventHandler } from 'react'
 
 type ButtonProps = {
   children: string
-  onClick: MouseEventHandler
+  onClick?: MouseEventHandler
   width?: string
   height?: string
   fontSize?: string

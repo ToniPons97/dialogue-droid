@@ -1,5 +1,4 @@
 'use client'
-
 import './RippleButton.scss'
 import { MouseEventHandler, useRef } from 'react'
 import { useClickRippleAnim } from '../../hooks/useClickRippleAnim'
@@ -11,9 +10,8 @@ type RippleButtonProps = {
 }
 
 const RippleButton = ({ children, onClick, alignSelf = 'center' }: RippleButtonProps) => {
-    const btnRef = useRef(null);
-
-    useClickRippleAnim(btnRef, {});
+    const btnRef = useRef(null)
+    useClickRippleAnim(btnRef, {})
 
     return (
         <div 

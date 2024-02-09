@@ -56,15 +56,24 @@ const deleteChatById = async (req: Request, res: Response) => {
         const id: string = req.body.id;
 
         if (id) {
-            const result = await prisma.chat.delete({
+            const chat = await prisma.chat.findUnique({
                 where: {
-                    id: id
+                    id
                 }
             });
-    
-            res.status(200).json({status: ResponseStatus.SUCCESS, data: result});
+
+            if (chat) {
+                const deletedChat = await prisma.chat.delete({
+                    where: {
+                        id
+                    }
+                });
+                res.status(200).json({ status: ResponseStatus.SUCCESS, data: deletedChat });
+            } else {
+                res.status(404).json({ status: ResponseStatus.ERROR, message: 'Not found.' });
+            }
         } else {
-            res.status(400).json({status: ResponseStatus.ERROR, message: 'Invalid request.'});
+            res.status(400).json({ status: ResponseStatus.ERROR, message: 'Invalid request.' });
         }
 
     } catch (e) {

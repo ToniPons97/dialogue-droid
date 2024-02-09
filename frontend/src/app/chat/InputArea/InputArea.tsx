@@ -1,3 +1,4 @@
+'use client'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import styles from './InputArea.module.scss'
 import { useDispatch } from 'react-redux'
@@ -6,12 +7,14 @@ import { createChat } from '@/lib/chats/chatsState'
 
 const InputArea = ({ }) => {
     const [userInput, setUserInput] = useState('')
+    const dispatch = useDispatch()
+
 
     const handleInputChange = (ev: ChangeEvent<HTMLInputElement>) => {
         setUserInput(ev.target.value)
     }
 
-    const sendPrompt: any = async (prompt: string) => {
+    const sendPrompt = async (prompt: string) => {
         try {
             setUserInput('')
             dispatch(createChat(prompt, '/chat'))
@@ -31,8 +34,6 @@ const InputArea = ({ }) => {
             sendPrompt(userInput)
         }
     }
-
-    const dispatch = useDispatch()
 
     return (
         <div className={styles.inputArea}>

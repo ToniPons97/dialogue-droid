@@ -1,9 +1,13 @@
+'use client'
 import styles from './MessagePair.module.scss'
 import PersonIcon from '@mui/icons-material/Person'
 import { format } from 'date-fns'
 import Image from 'next/image'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useDispatch } from 'react-redux'
+import { deleteChat } from '@/lib/chats/chatsState'
+import { useState } from 'react'
 
 type MessagePairProps = {
   userPrompt: string
@@ -14,6 +18,18 @@ type MessagePairProps = {
 
 const MessagePair = ({ id, userPrompt, response, date }: MessagePairProps) => {
   const formatedDate = format(new Date(date), "MMM dd, yyyy 'at' HH:mm")
+
+  const [like, setLike] = useState(false);
+
+  const dispatch = useDispatch()
+
+  const removeChat: any = async (id: string) => {
+    try {
+      dispatch(deleteChat(id, '/chat'))
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   return (
     <>
@@ -27,12 +43,11 @@ const MessagePair = ({ id, userPrompt, response, date }: MessagePairProps) => {
             borderRadius: '50%',
           }}
         />
-        {/* <MoreHorizIcon /> */}
         <div className={styles.messaBoxIcons}>
-          <div onClick={() => console.log('Favorite')} role='button'>
-            <FavoriteIcon />
+          <div onClick={() => setLike(!like)} role='button'>
+            <FavoriteIcon style={{ color: like ? '#1FAE55' : 'white'}} />
           </div>
-          <div onClick={() => console.log(`deleting ${id}`)} role='button'>
+          <div onClick={() => removeChat(id)} role='button'>
             <DeleteIcon sx={{ color: '#FF7F7F' }} />
           </div>
         </div>

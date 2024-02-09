@@ -1,10 +1,10 @@
 'use client'
-
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state'
+import { useRouter } from 'next/navigation'
 
 
 type HamburgerMenuProps = {
@@ -12,6 +12,7 @@ type HamburgerMenuProps = {
 }
 
 export default function HamburgerMenu({ className }: HamburgerMenuProps) {
+    const router = useRouter();
     return (
         <PopupState variant="popover" popupId="demo-popup-menu">
             {(popupState) => (
@@ -24,10 +25,16 @@ export default function HamburgerMenu({ className }: HamburgerMenuProps) {
                         <MenuIcon />
                     </IconButton>
                     <Menu  {...bindMenu(popupState)} variant='selectedMenu'>
-                        <MenuItem onClick={popupState.close}>
+                        <MenuItem onClick={() => {
+                            popupState.close
+                            router.push('/')
+                        }}>
                             Home
                         </MenuItem>
-                        <MenuItem onClick={popupState.close}>
+                        <MenuItem onClick={() => {
+                            popupState.close
+                            router.push('/chat')
+                        }}>
                             Chat
                         </MenuItem>
                         <MenuItem onClick={popupState.close}>

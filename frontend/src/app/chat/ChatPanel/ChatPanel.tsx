@@ -13,11 +13,6 @@ const ChatPanel = () => {
     const {chats} = chatsState
     const chatContainerRef = useRef<HTMLDivElement>(null)
 
-
-    // useEffect(() => {
-    //     console.log(chats)
-    // }, [chats])
-
     useEffect(() => {
         if (chatContainerRef.current) {
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
