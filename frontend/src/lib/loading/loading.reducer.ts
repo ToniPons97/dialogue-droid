@@ -1,4 +1,3 @@
-// loading.reducer.ts
 import { createReducer } from '@reduxjs/toolkit';
 import { loadingState } from './loading.slice';
 

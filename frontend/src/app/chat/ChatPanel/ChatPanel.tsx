@@ -1,15 +1,13 @@
 'use client'
+import styles from './ChatPanel.module.scss'
+import Button from '@/components/Button/Button'
+import { ChangeEvent, useEffect, useState, useRef } from 'react'
+import MessagePair from '../MessageBox/MessagePair'
+import { useAppSelector } from '@/lib/hooks'
+import { useDispatch } from 'react-redux'
+import { createChat } from '@/lib/chats/chats.slice'
 
-import styles from './ChatDisplay.module.scss'
-import Button from '@/components/Button/Button';
-import { ChangeEvent, useEffect, useState, useRef } from 'react';
-import MessagePair from '../MessageBox/MessagePair';
-import { useAppSelector } from '@/lib/hooks';
-import { useDispatch } from 'react-redux';
-import { createChat } from '@/lib/chats/chats.slice';
-
-
-const ChatDisplay = () => {
+const ChatPanel = () => {
     const [userInput, setUserInput] = useState('')
 
     const handleInputChange = (ev: ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +33,7 @@ const ChatDisplay = () => {
     const sendPrompt: any = async (prompt: string) => {
         try {
             setUserInput('')
-            dispatch(createChat(prompt, '/chat', chats))
+            dispatch(createChat(prompt, '/chat'))
         } catch (e) {
             console.error(e)
         } finally {
@@ -82,4 +80,4 @@ const ChatDisplay = () => {
     )
 }
 
-export default ChatDisplay
+export default ChatPanel

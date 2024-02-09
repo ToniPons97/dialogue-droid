@@ -1,9 +1,6 @@
 // loading.slice.ts
 import { createSlice } from '@reduxjs/toolkit';
-
-interface LoadingState {
-    loading: boolean;
-}
+import { LoadingState } from './loading.reducer';
 
 const initialState: LoadingState = {
     loading: false,

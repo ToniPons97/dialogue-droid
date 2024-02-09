@@ -1,8 +1,8 @@
 import styles from './MessagePair.module.scss'
-import PersonIcon from '@mui/icons-material/Person';
-import { format } from 'date-fns';
-import Image from 'next/image';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import PersonIcon from '@mui/icons-material/Person'
+import { format } from 'date-fns'
+import Image from 'next/image'
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 
 type MessagePairProps = {
   userPrompt: string

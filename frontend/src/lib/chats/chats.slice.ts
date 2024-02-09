@@ -1,10 +1,10 @@
-// chats.slice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppDispatch } from '../store';
 import { loadingState } from '../loading/loading.slice';
 import apiClient from '@/clients/api-client';
 import { ChatsState } from './chats.reducer';
 import { Chat, ChatsResponse } from '@/types/chatTypes';
+import errorState from '../error/errorState';
 
 export const chatsState = createSlice({
     name: 'chats',
@@ -15,12 +15,15 @@ export const chatsState = createSlice({
         populate: (state, action: PayloadAction<Chat[]>) => {
             state.chats = action.payload;
         },
+        addChat: (state, action: PayloadAction<Chat>) => {
+            state.chats.push(action.payload);
+        }
     },
 });
 
-export const { populate } = chatsState.actions;
+export const { populate, addChat } = chatsState.actions;
 
-export const createChat = (prompt: string, endpoint: string, currentChats: Chat[]): any => {
+export const createChat = (prompt: string, endpoint: string): any => {
     return async (dispatch: AppDispatch) => {
         try {
             if (prompt) {
@@ -32,14 +35,13 @@ export const createChat = (prompt: string, endpoint: string, currentChats: Chat[
                     prompt
                 });
     
-                dispatch(chatsState.actions.populate([...currentChats, response.data]));
+                dispatch(chatsState.actions.addChat(response.data));
             }
         } catch (e) {
-            console.error(e);
+            dispatch(errorState.actions.addError('Axios error'));
         } finally {
             dispatch(loadingState.actions.end());
         }
-
     }
 }
 
@@ -57,7 +59,7 @@ export const fetchChats = (endpoint: string): any => {
 
             dispatch(chatsState.actions.populate(data));
         } catch (e) {
-            console.error(e);
+            dispatch(errorState.actions.addError('Axios error'));
         } finally {
             dispatch(loadingState.actions.end());
         }

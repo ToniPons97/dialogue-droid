@@ -2,11 +2,12 @@ import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { chatsReducer } from "./chats/chats.reducer";
 import { loadingReducer } from "./loading/loading.reducer";
-
+import errorState from "./error/errorState";
 const rootReducer = combineReducers({
     chats: chatsReducer,
     ui: combineReducers({
         loading: loadingReducer,
+        error: errorState.reducer
     })
 });
 
