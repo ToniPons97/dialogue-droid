@@ -4,26 +4,19 @@ import PersonIcon from '@mui/icons-material/Person'
 import { format } from 'date-fns'
 import Image from 'next/image'
 import DeleteIcon from '@mui/icons-material/Delete'
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useDispatch } from 'react-redux'
 import { deleteChat } from '@/lib/chats/chatsState'
 import { useState } from 'react'
-
-type MessagePairProps = {
-  userPrompt: string
-  response: string
-  date: string
-  id: string
-}
+import { MessagePairProps } from '@/types/chatTypes'
 
 const MessagePair = ({ id, userPrompt, response, date }: MessagePairProps) => {
   const formatedDate = format(new Date(date), "MMM dd, yyyy 'at' HH:mm")
-
-  const [like, setLike] = useState(false);
-
   const dispatch = useDispatch()
 
-  const removeChat: any = async (id: string) => {
+  const [like, setLike] = useState(false)
+
+  const removeChat = async (id: string) => {
     try {
       dispatch(deleteChat(id, '/chat'))
     } catch (e) {

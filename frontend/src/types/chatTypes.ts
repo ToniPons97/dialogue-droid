@@ -7,6 +7,13 @@ export type Chat = {
     response: string
 }
 
+export type MessagePairProps = {
+    userPrompt: string
+    response: string
+    date: string
+    id: string
+}
+
 export type ChatResponse = {
     status: ResponseStatus
     data: Chat | Chat[]

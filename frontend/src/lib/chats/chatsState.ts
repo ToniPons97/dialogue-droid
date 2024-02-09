@@ -83,9 +83,7 @@ export const deleteChat = (id: string, endpoint: string): any => {
                     id
                 }
             });
-    
-            console.log(response.data.data);
-    
+        
             const chat = response.data.data as Chat;
             dispatch(chatsState.actions.deleteChat(chat));
         } catch (e) {

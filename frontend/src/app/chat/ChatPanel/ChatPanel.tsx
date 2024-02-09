@@ -32,7 +32,6 @@ const ChatPanel = () => {
                             date={message.createdAt}
                         />
                     ))
-
                 }
                 {
                     chats.length === 0 && <h2 className={styles.noChatsMessage}>No chats found</h2>
