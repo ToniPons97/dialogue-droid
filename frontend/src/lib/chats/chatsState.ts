@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppDispatch } from '../store';
-import { loadingState } from '../loading/loading.slice';
+import { loadingState } from '../loading/loadingState';
 import apiClient from '@/clients/api-client';
 import { Chat, ChatResponse } from '@/types/chatTypes';
 import errorState from '../error/errorState';
@@ -37,7 +37,6 @@ export const createChat = (prompt: string, endpoint: string): any => {
                 });
 
                 const { data } = response.data;
-                console.log(data);
                 dispatch(chatsState.actions.addChat(data as Chat));
             }
         } catch (e) {

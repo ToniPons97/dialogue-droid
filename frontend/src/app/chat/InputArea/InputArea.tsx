@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react'
 import styles from './InputArea.module.scss'
 import { useDispatch } from 'react-redux'
 import Button from '@/components/Button/Button'
-import { createChat } from '@/lib/chats/chats.slice'
+import { createChat } from '@/lib/chats/chatsState'
 
 const InputArea = ({ }) => {
     const [userInput, setUserInput] = useState('')

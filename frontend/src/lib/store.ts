@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
-import { chatsState } from "./chats/chats.slice";
-import { loadingState } from "./loading/loading.slice";
+import { chatsState } from "./chats/chatsState";
+import { loadingState } from "./loading/loadingState";
 import errorState from "./error/errorState";
 
 const rootReducer = combineReducers({
