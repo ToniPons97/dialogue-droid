@@ -4,17 +4,22 @@ import { completionResponse } from '../utils/utils';
 
 const prisma = new PrismaClient();
 
+enum ResponseStatus {
+    SUCCESS = 'success',
+    ERROR = 'error'
+}
+
 // Get all chats
 const getAllChats = async (req: Request, res: Response) => {
     try {
         const data = await prisma.chat.findMany();
         res.status(200).json({
-            status: 'success',
+            status: ResponseStatus.SUCCESS,
             data
         });
     } catch (e) {
         console.error(e);
-        res.status(500).json({ status: 'error', message: 'Internal server error.' });
+        res.status(500).json({ status: ResponseStatus.ERROR, message: 'Internal server error.' });
     }
 }
 
@@ -33,16 +38,39 @@ const createChat = async (req: Request, res: Response) => {
             });
 
             res.status(200).json({
-                status: 'success',
+                status: ResponseStatus.SUCCESS,
                 data: messagePair
             });
         } else {
-            res.status(400).json({ status: 'error', message: 'Invalid request.' });
+            res.status(400).json({ status: ResponseStatus.ERROR, message: 'Invalid request.' });
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ status: 'error', message: 'Internal server error.' });
+        res.status(500).json({ status: ResponseStatus.ERROR, message: 'Internal server error.' });
     }
 }
 
-export { getAllChats, createChat };
+// Delete chat by id
+const deleteChatById = async (req: Request, res: Response) => {
+    try {
+        const id: string = req.body.id;
+
+        if (id) {
+            const result = await prisma.chat.delete({
+                where: {
+                    id: id
+                }
+            });
+    
+            res.status(200).json({status: ResponseStatus.SUCCESS, data: result});
+        } else {
+            res.status(400).json({status: ResponseStatus.ERROR, message: 'Invalid request.'});
+        }
+
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ status: ResponseStatus.ERROR, message: 'Internal server error.' });
+    }
+}
+
+export { getAllChats, createChat, deleteChatById };

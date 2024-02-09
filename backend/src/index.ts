@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import { createChat, getAllChats } from './controllers/chat';
+import { createChat, deleteChatById, getAllChats } from './controllers/chat';
 
 const app = express();
 app.use(express.json());
@@ -19,6 +19,9 @@ app.get(`${basePath}/chat`, getAllChats);
 
 // Create new chat
 app.post(`${basePath}/chat`, createChat);
+
+// Delete chat by id
+app.delete(`${basePath}/chat`, deleteChatById);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}...`);

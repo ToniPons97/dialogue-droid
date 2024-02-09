@@ -31,6 +31,7 @@ const ChatPanel = () => {
                     chats.map((message) => (
                         <MessagePair
                             key={message.id}
+                            id={message.id}
                             userPrompt={message.userPrompt}
                             response={message.response}
                             date={message.createdAt}
