@@ -1,27 +1,28 @@
 'use client'
 import styles from './ChatPanel.module.scss'
-import Button from '@/components/Button/Button'
-import { ChangeEvent, useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import MessagePair from '../MessageBox/MessagePair'
 import { useAppSelector } from '@/lib/hooks'
-import { useDispatch } from 'react-redux'
 import InputArea from '../InputArea/InputArea'
+import { CircularProgress } from '@mui/material'
 
 const ChatPanel = () => {
     const chatsState = useAppSelector(state => state.rootReducer.chats)
+    const loadingState = useAppSelector(state => state.rootReducer.ui.loading);
+
     const {chats} = chatsState
     const chatContainerRef = useRef<HTMLDivElement>(null)
+
+
+    // useEffect(() => {
+    //     console.log(chats)
+    // }, [chats])
 
     useEffect(() => {
         if (chatContainerRef.current) {
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
         }
-    }, [chats])
-
-
-    useEffect(() => {
-        console.log(chats)
-    }, [chats])
+    }, [loadingState.loading])
 
     return (
         <section className={styles.chatDisplay}>
@@ -35,14 +36,14 @@ const ChatPanel = () => {
                             date={message.createdAt}
                         />
                     ))
+
                 }
                 {
                     chats.length === 0 && <h2 className={styles.noChatsMessage}>No chats found</h2>
                 }
+                {loadingState.loading && <CircularProgress sx={{color: 'white'}} />}
             </div>
-
             <InputArea />
-
         </section>
     )
 }

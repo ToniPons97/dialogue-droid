@@ -34,7 +34,7 @@ const createChat = async (req: Request, res: Response) => {
 
             res.status(200).json({
                 status: 'success',
-                ...messagePair
+                data: messagePair
             });
         } else {
             res.status(400).json({ status: 'error', message: 'Invalid request.' });

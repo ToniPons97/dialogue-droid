@@ -1,13 +1,38 @@
+type ResponseStatus = 'success' | 'error'
+
+
+
+// export type Chat = {
+//     // status: ResponseStatus
+//     id: string
+//     createdAt: string
+//     userPrompt: string
+//     response: string
+// }
+
+// export type ChatsResponse = {
+//     status: ResponseStatus
+//     data: Chat[]
+// }
+
+// export type CreateChatResponse = {
+//     status: ResponseStatus
+//     data: Chat
+// }
+
 export type Chat = {
-    status: 'success' | 'error'
     id: string
     createdAt: string
     userPrompt: string
     response: string
 }
 
-export type ChatsResponse = {
-    status: 'success' | 'error'
-    data: Chat[]
+export type ChatResponse = {
+    status: ResponseStatus
+    data: Chat | Chat[]
 }
 
+// export type MessagePair = {
+//     status: ResponseStatus
+//     messagePair: Chat
+// }

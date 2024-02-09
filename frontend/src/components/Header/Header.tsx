@@ -4,13 +4,8 @@ import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
 import styles from './Header.module.scss'
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu'
-import { useDispatch } from 'react-redux'
-import { fetchChats } from '@/lib/chats/chats.slice'
 
 const Header = () => {
-    const dispatch = useDispatch();
-    dispatch(fetchChats('/chat'));
-
     return (
         <nav className={styles.header}>
             <ul>

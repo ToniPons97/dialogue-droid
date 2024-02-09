@@ -3,7 +3,7 @@ import { AppDispatch } from '../store';
 import { loadingState } from '../loading/loading.slice';
 import apiClient from '@/clients/api-client';
 import { ChatsState } from './chats.reducer';
-import { Chat, ChatsResponse } from '@/types/chatTypes';
+import { Chat, ChatResponse } from '@/types/chatTypes';
 import errorState from '../error/errorState';
 
 export const chatsState = createSlice({
@@ -30,12 +30,14 @@ export const createChat = (prompt: string, endpoint: string): any => {
                 dispatch(loadingState.actions.start());
     
                 const abortController = new AbortController();
-                const response = await apiClient.post<Chat>(endpoint, {
+                const response = await apiClient.post<ChatResponse>(endpoint, {
                     signal: abortController.signal,
                     prompt
                 });
-    
-                dispatch(chatsState.actions.addChat(response.data));
+
+                const { data } = response.data;
+                console.log(data);
+                dispatch(chatsState.actions.addChat(data as Chat));
             }
         } catch (e) {
             dispatch(errorState.actions.addError('Axios error'));
@@ -51,13 +53,12 @@ export const fetchChats = (endpoint: string): any => {
             dispatch(loadingState.actions.start());
 
             const abortController = new AbortController();
-            const response = await apiClient.get<ChatsResponse>(endpoint, {
+            const response = await apiClient.get<ChatResponse>(endpoint, {
                 signal: abortController.signal,
             });
 
             const { data } = response.data;
-
-            dispatch(chatsState.actions.populate(data));
+            dispatch(chatsState.actions.populate(data as Chat[]));
         } catch (e) {
             dispatch(errorState.actions.addError('Axios error'));
         } finally {
