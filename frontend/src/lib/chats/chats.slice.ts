@@ -2,9 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppDispatch } from '../store';
 import { loadingState } from '../loading/loading.slice';
 import apiClient from '@/clients/api-client';
-import { ChatsState } from './chats.reducer';
 import { Chat, ChatResponse } from '@/types/chatTypes';
 import errorState from '../error/errorState';
+
+type ChatsState = {
+    chats: Chat[];
+}
 
 export const chatsState = createSlice({
     name: 'chats',
@@ -20,8 +23,6 @@ export const chatsState = createSlice({
         }
     },
 });
-
-export const { populate, addChat } = chatsState.actions;
 
 export const createChat = (prompt: string, endpoint: string): any => {
     return async (dispatch: AppDispatch) => {

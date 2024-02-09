@@ -1,6 +1,8 @@
-// loading.slice.ts
 import { createSlice } from '@reduxjs/toolkit';
-import { LoadingState } from './loading.reducer';
+
+type LoadingState = {
+    loading: boolean
+}
 
 const initialState: LoadingState = {
     loading: false,
@@ -20,5 +22,3 @@ export const loadingState = createSlice({
 });
 
 export const { start, end } = loadingState.actions;
-
-export default loadingState.reducer;

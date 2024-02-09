@@ -1,16 +1,16 @@
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
-import { chatsReducer } from "./chats/chats.reducer";
-import { loadingReducer } from "./loading/loading.reducer";
+import { chatsState } from "./chats/chats.slice";
+import { loadingState } from "./loading/loading.slice";
 import errorState from "./error/errorState";
+
 const rootReducer = combineReducers({
-    chats: chatsReducer,
+    chats: chatsState.reducer,
     ui: combineReducers({
-        loading: loadingReducer,
+        loading: loadingState.reducer,
         error: errorState.reducer
     })
 });
-
 
 export const makeStore = () => {
     return configureStore({
