@@ -1,7 +1,7 @@
 'use client'
 import styles from './ChatPanel.module.scss'
 import { useEffect, useRef } from 'react'
-import MessagePair from '../MessageBox/MessagePair'
+import MessagePair from '../MessagePair/MessagePair'
 import { useAppSelector } from '@/lib/hooks'
 import InputArea from '../InputArea/InputArea'
 import { CircularProgress } from '@mui/material'

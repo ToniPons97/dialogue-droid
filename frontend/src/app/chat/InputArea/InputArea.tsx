@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import styles from './InputArea.module.scss'
 import { useDispatch } from 'react-redux'
 import Button from '@/components/Button/Button'
@@ -26,11 +26,25 @@ const InputArea = ({ }) => {
         }
     }
 
+    const handleKeyPress = (ev: KeyboardEvent) => {
+        if (ev.key === 'Enter' && userInput) {
+            sendPrompt(userInput)
+        }
+    }
+
     const dispatch = useDispatch()
 
     return (
         <div className={styles.inputArea}>
-            <input value={userInput} onChange={handleInputChange} type='text' />
+            <input
+                type='text'
+                value={userInput}
+                placeholder='Chat with DialogueDroid'
+                autoFocus
+                onKeyDown={handleKeyPress}
+                onChange={handleInputChange}
+                
+            />
             <Button
                 width='150px'
                 height='50px'
