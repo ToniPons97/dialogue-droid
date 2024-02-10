@@ -1,8 +1,8 @@
 'use client'
 import { useRef } from 'react'
 import { Provider } from 'react-redux'
-import { makeStore, AppStore } from '../lib/store'
-import { fetchChats } from '@/lib/chats/chatsState'
+import { makeStore, AppStore } from './store'
+import { fetchChats } from '@/store/chats/chatsState'
 
 export default function StoreProvider({
     children

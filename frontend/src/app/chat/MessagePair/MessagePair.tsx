@@ -6,17 +6,17 @@ import Image from 'next/image'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useDispatch } from 'react-redux'
-import { deleteChat } from '@/lib/chats/chatsState'
+import { deleteChat } from '@/store/chats/chatsState'
 import { useState } from 'react'
-import { MessagePairProps } from '@/types/chatTypes'
 import ReadMore from './ReadMore/ReadMore'
 import { Tooltip } from '@mui/material'
+import { Chat } from '@/types/chatTypes'
 
-const MessagePair = ({ id, userPrompt, response, date }: MessagePairProps) => {
-  const formatedDate = format(new Date(date), "MMM dd, yyyy 'at' HH:mm")
+
+const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) => {
+  const formatedDate = format(new Date(createdAt), "MMM dd, yyyy 'at' HH:mm")
   const dispatch = useDispatch()
 
-  const [like, setLike] = useState(false)
 
   const removeChat = async (id: string) => {
     try {
@@ -39,9 +39,9 @@ const MessagePair = ({ id, userPrompt, response, date }: MessagePairProps) => {
           }}
         />
         <div className={styles.messaBoxIcons}>
-          <div onClick={() => setLike(!like)} role='button'>
+          <div onClick={() => console.log('adding to favorite')} role='button'>
             <Tooltip title='Add to favorites'>
-              <FavoriteIcon style={{ color: like ? '#1FAE55' : 'white' }} />
+              <FavoriteIcon style={{ color: favorite ? '#1FAE55' : 'white' }} />
             </Tooltip>
           </div>
           <div onClick={() => removeChat(id)} role='button'>

@@ -2,7 +2,7 @@
 import styles from './ChatPanel.module.scss'
 import { useEffect, useRef } from 'react'
 import MessagePair from '../MessagePair/MessagePair'
-import { useAppSelector } from '@/lib/hooks'
+import { useAppSelector } from '@/store/hooks'
 import InputArea from '../InputArea/InputArea'
 import { CircularProgress } from '@mui/material'
 import Blob from '@/components/Blob/Blob'
@@ -22,10 +22,8 @@ const ChatPanel = () => {
 
     return (
         <section className={styles.chatPanel}>
+
             <div ref={chatContainerRef} className={styles.messages}>
-            <div className={styles.blob}>
-                <Blob left='0' transform='rotate(90deg)' />
-            </div>
                 {
                     chats.map((message) => (
                         <MessagePair
@@ -33,7 +31,8 @@ const ChatPanel = () => {
                             id={message.id}
                             userPrompt={message.userPrompt}
                             response={message.response}
-                            date={message.createdAt}
+                            createdAt={message.createdAt}
+                            favorite={message.favorite}
                         />
                     ))
                 }
@@ -41,8 +40,12 @@ const ChatPanel = () => {
                     chats.length === 0 && <h2 className={styles.noChatsMessage}>No chats found</h2>
                 }
                 {loadingState.loading && <CircularProgress sx={{ color: 'white' }} />}
+                <div className={styles.blob}>
+                    <Blob left='0' bottom='100vh' transform='rotate(90deg)' />
+                </div>
             </div>
             <InputArea />
+
         </section>
     )
 }

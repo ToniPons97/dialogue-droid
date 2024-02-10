@@ -16,4 +16,5 @@ model Chat {
   userPrompt String
   response   String
   createdAt  DateTime @default(now())
+  favorite   Boolean @default(false)
 }

@@ -9,7 +9,7 @@ const HomePage = () => {
 
     return (
             <section className={styles.home}>
-                <Blob />
+                <Blob right='0'  />
                 <div className={styles.banner}>
                     <h1>
                         AI-Driven

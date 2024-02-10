@@ -26,7 +26,7 @@ export const chatsState = createSlice({
             if (index !== -1) {
                 state.chats.splice(index, 1);
             }
-        }
+        },
     },
 });
 

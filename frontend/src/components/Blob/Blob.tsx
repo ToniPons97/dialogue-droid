@@ -2,13 +2,21 @@ import styles from './Blob.module.scss'
 
 type BlobProps = {
     left?: string
+    right?: string
+    bottom?: string
+    top?: string
     transform?: string
 }
 
-const Blob = ({ left, transform }: BlobProps) => {
+const Blob = ({ left, right, top, transform }: BlobProps) => {
     return (
-        <svg style={{ left, transform }} className={styles.blobContainer} viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" fill="#939CE2" r="20" />
+        <svg style={{ 
+            left: left,
+            right: right,
+            top: top,
+            transform: transform,
+        }} className={styles.blobContainer} viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" fill="#939CE2" r="30" />
             <g>
                 <svg
                     className={styles.blobs}

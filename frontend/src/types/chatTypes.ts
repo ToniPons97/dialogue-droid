@@ -5,14 +5,15 @@ export type Chat = {
     createdAt: string
     userPrompt: string
     response: string
+    favorite: boolean
 }
 
-export type MessagePairProps = {
-    userPrompt: string
-    response: string
-    date: string
-    id: string
-}
+// export type MessagePairProps = {
+//     userPrompt: string
+//     response: string
+//     date: string
+//     id: string
+// }
 
 export type ChatResponse = {
     status: ResponseStatus

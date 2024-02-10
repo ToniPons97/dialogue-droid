@@ -1,7 +1,11 @@
 import ChatPanel from "./ChatPanel/ChatPanel";
 
 const page = () => {
-    return <ChatPanel />
+    return (
+        <main>
+            <ChatPanel />
+        </main>
+    )
 }
 
 export default page
