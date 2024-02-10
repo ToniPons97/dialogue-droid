@@ -107,10 +107,7 @@ export const toggleFavoriteThunk = (id: string, favorite: boolean, endpoint: str
                 data: {id, favorite}
             });
 
-            console.log(response);
-
             const chat = response.data.data as Chat;
-            console.log(chat);
             dispatch(chatsState.actions.toggleFavorite(chat));
         } catch {
             dispatch(errorState.actions.addError('Axios error'));

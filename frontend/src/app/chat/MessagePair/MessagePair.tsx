@@ -7,7 +7,6 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useDispatch } from 'react-redux'
 import { deleteChat, toggleFavoriteThunk } from '@/store/chats/chatsState'
-import { useState } from 'react'
 import ReadMore from './ReadMore/ReadMore'
 import { Tooltip } from '@mui/material'
 import { Chat } from '@/types/chatTypes'
@@ -16,9 +15,6 @@ import { Chat } from '@/types/chatTypes'
 const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) => {
   const formatedDate = format(new Date(createdAt), "MMM dd, yyyy 'at' HH:mm")
   const dispatch = useDispatch()
-
-  console.log(favorite);
-
 
   const removeChat = (id: string) => {
     try {
@@ -29,7 +25,6 @@ const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) =>
   }
 
   const handleToggleFavorite = () => {
-    console.log('asdf')
     dispatch(toggleFavoriteThunk(id, !favorite,'/chat'))
   }
 
