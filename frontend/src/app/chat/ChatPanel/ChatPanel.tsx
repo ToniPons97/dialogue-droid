@@ -5,12 +5,13 @@ import MessagePair from '../MessagePair/MessagePair'
 import { useAppSelector } from '@/lib/hooks'
 import InputArea from '../InputArea/InputArea'
 import { CircularProgress } from '@mui/material'
+import Blob from '@/components/Blob/Blob'
 
 const ChatPanel = () => {
     const chatsState = useAppSelector(state => state.rootReducer.chats)
     const loadingState = useAppSelector(state => state.rootReducer.ui.loading);
 
-    const {chats} = chatsState
+    const { chats } = chatsState
     const chatContainerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -20,8 +21,11 @@ const ChatPanel = () => {
     }, [loadingState.loading])
 
     return (
-        <section className={styles.chatDisplay}>
+        <section className={styles.chatPanel}>
             <div ref={chatContainerRef} className={styles.messages}>
+            <div className={styles.blob}>
+                <Blob left='0' transform='rotate(90deg)' />
+            </div>
                 {
                     chats.map((message) => (
                         <MessagePair
@@ -36,7 +40,7 @@ const ChatPanel = () => {
                 {
                     chats.length === 0 && <h2 className={styles.noChatsMessage}>No chats found</h2>
                 }
-                {loadingState.loading && <CircularProgress sx={{color: 'white'}} />}
+                {loadingState.loading && <CircularProgress sx={{ color: 'white' }} />}
             </div>
             <InputArea />
         </section>

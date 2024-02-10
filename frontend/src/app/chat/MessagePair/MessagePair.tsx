@@ -9,14 +9,14 @@ import { useDispatch } from 'react-redux'
 import { deleteChat } from '@/lib/chats/chatsState'
 import { useState } from 'react'
 import { MessagePairProps } from '@/types/chatTypes'
-import ReadMore from '../ReadMore/ReadMore'
+import ReadMore from './ReadMore/ReadMore'
+import { Tooltip } from '@mui/material'
 
 const MessagePair = ({ id, userPrompt, response, date }: MessagePairProps) => {
   const formatedDate = format(new Date(date), "MMM dd, yyyy 'at' HH:mm")
   const dispatch = useDispatch()
 
   const [like, setLike] = useState(false)
-
 
   const removeChat = async (id: string) => {
     try {
@@ -40,10 +40,14 @@ const MessagePair = ({ id, userPrompt, response, date }: MessagePairProps) => {
         />
         <div className={styles.messaBoxIcons}>
           <div onClick={() => setLike(!like)} role='button'>
-            <FavoriteIcon style={{ color: like ? '#1FAE55' : 'white' }} />
+            <Tooltip title='Add to favorites'>
+              <FavoriteIcon style={{ color: like ? '#1FAE55' : 'white' }} />
+            </Tooltip>
           </div>
           <div onClick={() => removeChat(id)} role='button'>
-            <DeleteIcon sx={{ color: '#FF7F7F' }} />
+            <Tooltip title='Delete'>
+              <DeleteIcon sx={{ color: '#FF7F7F' }} />
+            </Tooltip>
           </div>
         </div>
         <p>{userPrompt}</p>

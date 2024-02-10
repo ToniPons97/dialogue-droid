@@ -16,13 +16,9 @@ const ReadMore = ({ children }: ReadMoreProps) => {
         setIsReadMore(!isReadMore)
     }
 
-    console.log(text.slice(0, 100));
-    console.log(text.slice(0, 100).length)
-
     useEffect(() => {
         text.length > 300 ? setShowReadMore(true) : setShowReadMore(false)
     }, [])
-
 
     return (
         <p className={styles.text}>

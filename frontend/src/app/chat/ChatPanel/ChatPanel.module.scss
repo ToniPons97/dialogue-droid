@@ -1,11 +1,13 @@
 @use '../../../variables.scss' as v;
 
-.chatDisplay,
+.chatPanel,
 .messages {
+    z-index: 2;
     display: flex;
 }
 
-.chatDisplay {
+.chatPanel {
+    height: 84.5vh;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
@@ -24,7 +26,20 @@
 }
 
 .noChatsMessage {
+    z-index: 2;
     color: white;
     font-weight: 300;
     text-transform: uppercase;
+}
+
+@media screen and (max-width: 1168px) {
+    .chatPanel {
+        align-items: center;
+    }
+    .messages {
+        width: 100%;
+    }
+    .blob {
+        display: none;
+    }
 }

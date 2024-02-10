@@ -9,7 +9,6 @@ const InputArea = ({ }) => {
     const [userInput, setUserInput] = useState('')
     const dispatch = useDispatch()
 
-
     const handleInputChange = (ev: ChangeEvent<HTMLInputElement>) => {
         setUserInput(ev.target.value)
     }
@@ -43,8 +42,7 @@ const InputArea = ({ }) => {
                 placeholder='Chat with DialogueDroid'
                 autoFocus
                 onKeyDown={handleKeyPress}
-                onChange={handleInputChange}
-                
+                onChange={handleInputChange}                
             />
             <Button
                 width='150px'
