@@ -8,18 +8,18 @@ const HomePage = () => {
     const router = useRouter()
 
     return (
-            <section className={styles.home}>
-                <Blob right='0'  />
-                <div className={styles.banner}>
-                    <h1>
-                        AI-Driven
-                        <br className={styles.lineBreak1} /> Conversations
-                        <br className={styles.lineBreak2} />
-                        Unleashed
-                    </h1>
-                </div>
-                <RippleButton onClick={() => router.push('/chat')}>Get Started</RippleButton>
-            </section>
+        <section className={styles.home}>
+            <Blob right='0' />
+            <div className={styles.banner}>
+                <h1>
+                    AI-Driven
+                    <br className={styles.lineBreak1} /> Conversations
+                    <br className={styles.lineBreak2} />
+                    Unleashed
+                </h1>
+            </div>
+            <RippleButton onClick={() => router.push('/chat')}>Get Started</RippleButton>
+        </section>
     )
 }
 

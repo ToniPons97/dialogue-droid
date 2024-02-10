@@ -1,13 +1,13 @@
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/Header/Header";
-import { Metadata } from "next";
-import StoreProvider from "@/store/StoreProvider";
+import { Inter } from "next/font/google"
+import "./globals.css"
+import Header from "@/components/Header/Header"
+import { Metadata } from "next"
+import StoreProvider from "@/store/StoreProvider"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "DialogueDroid | Home",
+  title: 'DialogueDroid',
   description: "Created by Antonio Pons.",
 };
 

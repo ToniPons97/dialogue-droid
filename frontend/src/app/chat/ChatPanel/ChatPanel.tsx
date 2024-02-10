@@ -22,7 +22,6 @@ const ChatPanel = () => {
 
     return (
         <section className={styles.chatPanel}>
-
             <div ref={chatContainerRef} className={styles.messages}>
                 {
                     chats.map((message) => (
