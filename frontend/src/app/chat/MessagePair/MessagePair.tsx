@@ -6,7 +6,7 @@ import Image from 'next/image'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useDispatch } from 'react-redux'
-import { deleteChat } from '@/store/chats/chatsState'
+import { deleteChat, toggleFavoriteThunk } from '@/store/chats/chatsState'
 import { useState } from 'react'
 import ReadMore from './ReadMore/ReadMore'
 import { Tooltip } from '@mui/material'
@@ -17,14 +17,22 @@ const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) =>
   const formatedDate = format(new Date(createdAt), "MMM dd, yyyy 'at' HH:mm")
   const dispatch = useDispatch()
 
+  console.log(favorite);
 
-  const removeChat = async (id: string) => {
+
+  const removeChat = (id: string) => {
     try {
       dispatch(deleteChat(id, '/chat'))
     } catch (e) {
       console.error(e)
     }
   }
+
+  const handleToggleFavorite = () => {
+    console.log('asdf')
+    dispatch(toggleFavoriteThunk(id, !favorite,'/chat'))
+  }
+
 
   return (
     <>
@@ -39,7 +47,7 @@ const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) =>
           }}
         />
         <div className={styles.messaBoxIcons}>
-          <div onClick={() => console.log('adding to favorite')} role='button'>
+          <div onClick={() => handleToggleFavorite()} role='button'>
             <Tooltip title='Add to favorites'>
               <FavoriteIcon style={{ color: favorite ? '#1FAE55' : 'white' }} />
             </Tooltip>

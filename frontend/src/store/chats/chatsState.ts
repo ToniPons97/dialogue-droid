@@ -27,6 +27,14 @@ export const chatsState = createSlice({
                 state.chats.splice(index, 1);
             }
         },
+        toggleFavorite: (state, action: PayloadAction<Chat>) => {
+            const { id, favorite } = action.payload;
+            const chat = state.chats.find(chat => chat.id === id);
+
+            if (chat) {
+                chat.favorite = favorite;
+            }
+        }
     },
 });
 
@@ -79,14 +87,32 @@ export const deleteChat = (id: string, endpoint: string): any => {
             const abortController = new AbortController();
             const response = await apiClient.delete<ChatResponse>(endpoint, {
                 signal: abortController.signal,
-                data: {
-                    id
-                }
+                data: { id }
             });
-        
+
             const chat = response.data.data as Chat;
             dispatch(chatsState.actions.deleteChat(chat));
         } catch (e) {
+            dispatch(errorState.actions.addError('Axios error'));
+        }
+    }
+}
+
+export const toggleFavoriteThunk = (id: string, favorite: boolean, endpoint: string): any => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const abortController = new AbortController();
+            const response = await apiClient.put(endpoint, {
+                signal: abortController.signal,
+                data: {id, favorite}
+            });
+
+            console.log(response);
+
+            const chat = response.data.data as Chat;
+            console.log(chat);
+            dispatch(chatsState.actions.toggleFavorite(chat));
+        } catch {
             dispatch(errorState.actions.addError('Axios error'));
         }
     }

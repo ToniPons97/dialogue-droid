@@ -1,6 +1,11 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import { createChat, deleteChatById, getAllChats } from './controllers/chat';
+import { 
+    createChat, 
+    deleteChatById, 
+    getAllChats, 
+    updateFavoriteById 
+} from './controllers/chat';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -16,7 +21,7 @@ app.get('/', async (req: Request, res: Response) => {
     res.status(200).json({ message: 'Working fine!' });
 });
 
-// Endpoints
+// Chat Endpoint
 
 // Get all chats
 app.get(`${basePath}/chat`, getAllChats);
@@ -26,6 +31,9 @@ app.post(`${basePath}/chat`, createChat);
 
 // Delete chat by id
 app.delete(`${basePath}/chat`, deleteChatById);
+
+// Update favorite attribute
+app.put(`${basePath}/chat`, updateFavoriteById);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}...`);

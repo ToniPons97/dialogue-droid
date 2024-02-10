@@ -13,7 +13,7 @@ const InputArea = ({ }) => {
         setUserInput(ev.target.value)
     }
 
-    const sendPrompt = async (prompt: string) => {
+    const sendPrompt = (prompt: string) => {
         try {
             setUserInput('')
             dispatch(createChat(prompt, '/chat'))
