@@ -1,7 +1,11 @@
 @use '../../../variables.scss' as v;
 
-.chatDisplay {
+.chatDisplay,
+.messages {
     display: flex;
+}
+
+.chatDisplay {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
@@ -10,7 +14,6 @@
 
 .messages {
     overflow-y: scroll;
-    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;

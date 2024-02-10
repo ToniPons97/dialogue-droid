@@ -9,12 +9,14 @@ import { useDispatch } from 'react-redux'
 import { deleteChat } from '@/lib/chats/chatsState'
 import { useState } from 'react'
 import { MessagePairProps } from '@/types/chatTypes'
+import ReadMore from '../ReadMore/ReadMore'
 
 const MessagePair = ({ id, userPrompt, response, date }: MessagePairProps) => {
   const formatedDate = format(new Date(date), "MMM dd, yyyy 'at' HH:mm")
   const dispatch = useDispatch()
 
   const [like, setLike] = useState(false)
+
 
   const removeChat = async (id: string) => {
     try {
@@ -38,7 +40,7 @@ const MessagePair = ({ id, userPrompt, response, date }: MessagePairProps) => {
         />
         <div className={styles.messaBoxIcons}>
           <div onClick={() => setLike(!like)} role='button'>
-            <FavoriteIcon style={{ color: like ? '#1FAE55' : 'white'}} />
+            <FavoriteIcon style={{ color: like ? '#1FAE55' : 'white' }} />
           </div>
           <div onClick={() => removeChat(id)} role='button'>
             <DeleteIcon sx={{ color: '#FF7F7F' }} />
@@ -47,8 +49,11 @@ const MessagePair = ({ id, userPrompt, response, date }: MessagePairProps) => {
         <p>{userPrompt}</p>
       </div>
       <div className={styles.messageBox}>
-        <Image src='/droid.png' width={30} height={30} alt='droid icon' />
-        <p>{response}</p>
+        <Image style={{marginBottom: '10px'}} src='/droid.png' width={30} height={30} alt='droid icon' />
+
+        <ReadMore>
+          {response}
+        </ReadMore>
       </div>
     </>
   )
