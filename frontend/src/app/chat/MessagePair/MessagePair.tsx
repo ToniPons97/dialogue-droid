@@ -5,18 +5,17 @@ import { format } from 'date-fns'
 import Image from 'next/image'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import { useDispatch } from 'react-redux'
 import { deleteChat, toggleFavoriteThunk } from '@/store/chats/chatsState'
 import ReadMore from './ReadMore/ReadMore'
 import { Tooltip } from '@mui/material'
 import { Chat } from '@/types/chatTypes'
-
+import { useAppDispatch } from '@/store/hooks'
 
 const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) => {
   const formatedDate = format(new Date(createdAt), "MMM dd, yyyy 'at' HH:mm")
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const removeChat = (id: string) => {
+  const onRemoveChat = (id: string) => {
     try {
       dispatch(deleteChat(id, '/chat'))
     } catch (e) {
@@ -24,8 +23,8 @@ const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) =>
     }
   }
 
-  const handleToggleFavorite = () => {
-    dispatch(toggleFavoriteThunk(id, !favorite,'/chat'))
+  const onToggleFavorite = () => {
+    dispatch(toggleFavoriteThunk(id, !favorite, '/chat'))
   }
 
 
@@ -42,12 +41,12 @@ const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) =>
           }}
         />
         <div className={styles.messaBoxIcons}>
-          <div onClick={() => handleToggleFavorite()} role='button'>
+          <div onClick={() => onToggleFavorite()} role='button'>
             <Tooltip title='Add to favorites'>
               <FavoriteIcon style={{ color: favorite ? '#1FAE55' : 'white' }} />
             </Tooltip>
           </div>
-          <div onClick={() => removeChat(id)} role='button'>
+          <div onClick={() => onRemoveChat(id)} role='button'>
             <Tooltip title='Delete'>
               <DeleteIcon sx={{ color: '#FF7F7F' }} />
             </Tooltip>

@@ -1,5 +1,5 @@
-import { combineReducers } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
+import { UnknownAction, combineReducers } from "redux";
+import { ThunkAction, configureStore } from "@reduxjs/toolkit";
 import { chatsState } from "./chats/chatsState";
 import { loadingState } from "./loading/loadingState";
 import errorState from "./error/errorState";

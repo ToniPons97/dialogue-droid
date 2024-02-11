@@ -38,7 +38,7 @@ export const chatsState = createSlice({
     },
 });
 
-export const fetchChats = (endpoint: string): any => {
+export const fetchChats = (endpoint: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             dispatch(loadingState.actions.start());
@@ -58,7 +58,7 @@ export const fetchChats = (endpoint: string): any => {
     }
 }
 
-export const createChat = (prompt: string, endpoint: string): any => {
+export const createChat = (prompt: string, endpoint: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             if (prompt) {
@@ -81,7 +81,7 @@ export const createChat = (prompt: string, endpoint: string): any => {
     }
 }
 
-export const deleteChat = (id: string, endpoint: string): any => {
+export const deleteChat = (id: string, endpoint: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const abortController = new AbortController();
@@ -98,7 +98,7 @@ export const deleteChat = (id: string, endpoint: string): any => {
     }
 }
 
-export const toggleFavoriteThunk = (id: string, favorite: boolean, endpoint: string): any => {
+export const toggleFavoriteThunk = (id: string, favorite: boolean, endpoint: string) => {
     return async (dispatch: AppDispatch) => {
         try {
             const abortController = new AbortController();
