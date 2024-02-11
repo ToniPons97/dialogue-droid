@@ -7,7 +7,7 @@ COPY package-lock.json package-lock.json
 COPY .env .
 COPY prisma prisma
 
-RUN npm install && npm run db:generate
+RUN npm install && npm run db:migrate
 
 COPY . .
 
