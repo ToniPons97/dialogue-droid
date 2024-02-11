@@ -7,6 +7,7 @@ COPY package-lock.json package-lock.json
 COPY .env .
 
 RUN npm install
+RUN npm run db:generate
 
 COPY . .
 
