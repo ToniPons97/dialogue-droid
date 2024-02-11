@@ -64,7 +64,7 @@ docker compose up
 
 
 ## Installing dependencies
-If you opt to run this project without docker. Then run the following commands to install the dependencies.
+If you opt to run this project without docker. Then run the following commands to install the dependencies and generate the prisma client.
 
    ```bash
    cd ./backend
