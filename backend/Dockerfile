@@ -6,8 +6,7 @@ COPY package.json package.json
 COPY package-lock.json package-lock.json
 COPY .env .
 
-RUN npm install
-RUN npm run db:generate
+RUN npm install && npm run db:generate
 
 COPY . .
 
