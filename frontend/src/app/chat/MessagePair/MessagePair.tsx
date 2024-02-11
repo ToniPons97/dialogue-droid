@@ -10,6 +10,9 @@ import ReadMore from './ReadMore/ReadMore'
 import { Tooltip } from '@mui/material'
 import { Chat } from '@/types/chatTypes'
 import { useAppDispatch } from '@/store/hooks'
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { useState } from 'react'
 
 const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) => {
   const formatedDate = format(new Date(createdAt), "MMM dd, yyyy 'at' HH:mm")
@@ -26,6 +29,8 @@ const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) =>
   const onToggleFavorite = () => {
     dispatch(toggleFavoriteThunk(id, !favorite, '/chat'))
   }
+
+  const [ copied, setCopied ] = useState(false);
 
 
   return (
@@ -55,8 +60,22 @@ const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) =>
         <p>{userPrompt}</p>
       </div>
       <div className={styles.messageBox}>
-        <Image style={{marginBottom: '10px'}} src='/droid.png' width={30} height={30} alt='droid icon' />
-
+        <Image
+          style={{ marginBottom: '10px' }}
+          src='/droid.png'
+          width={30} height={30}
+          alt='droid icon'
+        />
+        <div className={styles.messaBoxIcons}>
+          <div role='button' onClick={() => setCopied(true)}>
+            <CopyToClipboard text={response}>
+              <Tooltip title='Copy to clipboard'>
+                <AssignmentIcon />
+              </Tooltip>
+            </CopyToClipboard>
+          </div>
+          {copied && <span>Copied!</span>}
+        </div>
         <ReadMore>
           {response}
         </ReadMore>
