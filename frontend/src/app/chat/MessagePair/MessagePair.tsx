@@ -20,14 +20,14 @@ const MessagePair = ({ id, userPrompt, response, createdAt, favorite }: Chat) =>
 
   const onRemoveChat = (id: string) => {
     try {
-      dispatch(deleteChat(id, '/chat'))
+      dispatch(deleteChat(id, '/chats/delete'))
     } catch (e) {
       console.error(e)
     }
   }
 
   const onToggleFavorite = () => {
-    dispatch(toggleFavoriteThunk(id, !favorite, '/chat'))
+    dispatch(toggleFavoriteThunk(id, !favorite, '/chats/favorite'))
   }
 
   const [ copied, setCopied ] = useState(false);

@@ -21,19 +21,19 @@ app.get('/', async (req: Request, res: Response) => {
     res.status(200).json({ message: 'Working fine!' });
 });
 
-// Chat Endpoint
+// Chats Endpoint
 
 // Get all chats
-app.get(`${basePath}/chat`, getAllChats);
+app.get(`${basePath}/chats`, getAllChats);
 
 // Create new chat
-app.post(`${basePath}/chat`, createChat);
+app.post(`${basePath}/chats/create`, createChat);
 
 // Delete chat by id
-app.delete(`${basePath}/chat`, deleteChatById);
+app.delete(`${basePath}/chats/delete`, deleteChatById);
 
 // Update favorite attribute
-app.put(`${basePath}/chat`, updateFavoriteById);
+app.put(`${basePath}/chats/favorite`, updateFavoriteById);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}...`);

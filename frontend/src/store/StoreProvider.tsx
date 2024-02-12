@@ -12,7 +12,7 @@ export default function StoreProvider({
     const storeRef = useRef<AppStore>()
     if (!storeRef.current) {
         storeRef.current = makeStore()
-        storeRef.current.dispatch(fetchChats('/chat'));
+        storeRef.current.dispatch(fetchChats('/chats'));
     }
 
     return <Provider store={storeRef.current}>{children}</Provider>
