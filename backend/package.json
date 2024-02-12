@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon src/server.ts",
     "db:clean": "docker compose stop mongodb && docker compose rm mongodb -f --volumes",
     "db:generate": "npx prisma generate",
     "db:migrate": "DATABASE_HOST=localhost npx prisma db push",
