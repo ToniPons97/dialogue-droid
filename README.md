@@ -98,24 +98,16 @@ Create a `.env` file in the `backend` directory and add the following variables:
 
 - `OPENAI_API_KEY`: Go get an API key [here](https://platform.openai.com/api-keys).
 
-- `EXPRESS_PORT`: Set this variable to `5000`. Keep in ming that if you wish to use a different port, you'll have to update the value in: `/compose.yaml` and `/frontend/src/clients/api-client.ts`.
+- `EXPRESS_PORT`: Set this variable to `5000`. Keep in mind that if you wish to use a different port, you'll have to update the value in: `/compose.yaml` and `/frontend/src/clients/api-client.ts`.
 
 - `MONGO_DB_URL`
 
 ```plaintext
-
-  
-
 # Example .env file
 
-  
-
 OPENAI_API_KEY=<Your OpenAI key>
-
 EXPRESS_PORT=5000
-
 MONGO_DB_URL='mongodb+srv://username:password@your-cluster-url/database-name?retryWrites=true&w=majority'
-
 ```
 
 ## Docker
