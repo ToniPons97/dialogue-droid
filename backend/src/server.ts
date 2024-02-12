@@ -5,7 +5,7 @@ import {
     deleteChatById, 
     getAllChats, 
     updateFavoriteById 
-} from './controllers/chat';
+} from './controllers/Chats/chats';
 import * as dotenv from 'dotenv';
 
 dotenv.config();

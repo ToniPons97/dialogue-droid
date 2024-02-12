@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { completionResponse } from '../utils/utils';
+import { completionResponse } from '../../utils/utils';
 
 const prisma = new PrismaClient();
 
