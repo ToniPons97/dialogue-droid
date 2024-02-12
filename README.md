@@ -87,21 +87,37 @@ MONGO_DB_URL=mongodb://localhost:27017/database_name?replicaSet=rs0
 ```
 
 
+
 ## Environment Variables
-- OPENAI_API_KEY
-- EXPRESS_PORT
-- MONGO_DB_URL
+
   
+
+Create a `.env` file in the `backend` directory and add the following variables:
+
+  
+
+- `OPENAI_API_KEY`: Go get an API key [here](https://platform.openai.com/api-keys).
+
+- `EXPRESS_PORT`: Set this variable to `5000`. Keep in ming that if you wish to use a different port, you'll have to update the value in: `/compose.yaml` and `/frontend/src/clients/api-client.ts`.
+
+- `MONGO_DB_URL`
+
 ```plaintext
+
+  
 
 # Example .env file
 
+  
+
 OPENAI_API_KEY=<Your OpenAI key>
+
 EXPRESS_PORT=5000
+
 MONGO_DB_URL='mongodb+srv://username:password@your-cluster-url/database-name?retryWrites=true&w=majority'
+
 ```
 
- 
 ## Docker
   
 
@@ -111,6 +127,21 @@ To run the project using Docker, execute the following command in the root direc
 docker compose  up
 ```
 
+
+## Installing dependencies
+
+If you opt to run this project without docker. Then run the following commands to install the dependencies and generate the prisma client.
+
+  
+```bash
+cd  ./backend
+
+npm  i && npm  run  db:generate
+
+cd  ../frontend
+
+npm  i
+```
 
 ## Installing dependencies
 
