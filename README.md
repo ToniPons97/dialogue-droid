@@ -88,20 +88,17 @@ MONGO_DB_URL=mongodb://localhost:27017/database_name?replicaSet=rs0
 
 
 ## Environment Variables
+- OPENAI_API_KEY
+- EXPRESS_PORT
+- MONGO_DB_URL
   
-
 ```plaintext
 
-# Example .env file for local MongoDB connection
-
-MONGO_DB_URL=mongodb://localhost:27017/my_database
+# Example .env file
 
 OPENAI_API_KEY=<Your OpenAI key>
-
 EXPRESS_PORT=5000
-
 MONGO_DB_URL='mongodb+srv://username:password@your-cluster-url/database-name?retryWrites=true&w=majority'
-
 ```
 
  
