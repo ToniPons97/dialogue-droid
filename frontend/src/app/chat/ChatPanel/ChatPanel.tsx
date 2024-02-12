@@ -36,9 +36,14 @@ const ChatPanel = () => {
                     ))
                 }
                 {
-                    chats.length === 0 && <h2 className={styles.noChatsMessage}>No chats found</h2>
+                    (chats.length === 0 && !loadingState.loading) &&
+                    <h2 className={styles.noChatsMessage}>No chats found</h2>
                 }
-                {loadingState.loading && <CircularProgress sx={{ color: 'white' }} />}
+                {
+                    (chats.length === 0 && loadingState.loading) &&
+                    <h2 className={styles.noChatsMessage}>Loading Chats</h2>
+                }
+                {loadingState.loading && <CircularProgress sx={{ color: 'white', marginTop: '20px' }} />}
                 <div className={styles.blob}>
                     <Blob left='0' bottom='100vh' transform='rotate(90deg)' />
                 </div>
